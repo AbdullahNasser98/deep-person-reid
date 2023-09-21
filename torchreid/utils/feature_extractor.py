@@ -64,10 +64,12 @@ class FeatureExtractor(object):
         pixel_mean=[0.485, 0.456, 0.406],
         pixel_std=[0.229, 0.224, 0.225],
         pixel_norm=True,
-        device='cuda',
+        device,
         verbose=True
     ):
         # Build model
+        if torch.cuda.is_avilable(): device='cuda'
+        else device='cpu'
         model = build_model(
             model_name,
             num_classes=1,
